@@ -25,7 +25,7 @@ namespace Quick_Union_Improvements_2_4
                 int qRoot = quickUnion.FindRoot(q);
                 int qRootDepth = quickUnion.FindRootDepth(q);
 
-                if (pRootDepth <= qRootDepth)
+                if (pRootDepth < qRootDepth)
                 {
                     quickUnion.Union(pRoot, qRoot);
                 }
@@ -53,6 +53,7 @@ namespace Quick_Union_Improvements_2_4
     internal class QuickUnion
     {
         int[] id = new int[10];
+        int[] rd = new int[10];
 
         public QuickUnion()
         {
@@ -60,15 +61,27 @@ namespace Quick_Union_Improvements_2_4
             {
                 id[i] = i;
             }
+
+            for (int i = 0; i < rd.Length; i++)
+            {
+                rd[i] =1;
+            }
         }
 
         public void Union(int p, int q)
         {
             id[p] = id[q];
 
+            rd[q]++;
+
             for (int i = 0; i < id.Length; i++)
             {
                 Console.Write("{0} ", id[i]);
+            }
+            Console.WriteLine();
+            for (int i = 0; i < rd.Length; i++)
+            {
+                Console.Write("{0} ", rd[i]);
             }
             Console.WriteLine();
         }
@@ -96,15 +109,8 @@ namespace Quick_Union_Improvements_2_4
         /// <returns></returns>
         public int FindRootDepth(int item)
         {
-            int depth = 0;
-            while (item != id[item])
-            {
-                depth++;
-                item = id[item];
-            }
-
-            Console.WriteLine("Root Depth {0}", depth);
-            return depth;
+            Console.WriteLine("Root Depth {0}", rd[item]);
+            return rd[item];
         }
     }
 }
