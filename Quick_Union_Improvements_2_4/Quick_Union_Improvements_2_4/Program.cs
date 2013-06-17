@@ -72,7 +72,7 @@ namespace Quick_Union_Improvements_2_4
         {
             id[p] = id[q];
 
-            rd[q]++;
+            rd[q] += rd[p];
 
             for (int i = 0; i < id.Length; i++)
             {
