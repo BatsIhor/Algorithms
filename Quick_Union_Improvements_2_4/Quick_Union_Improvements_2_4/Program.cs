@@ -70,6 +70,8 @@ namespace Quick_Union_Improvements_2_4
 
         public void Union(int p, int q)
         {
+            //TODO: Check if they are not connected.
+
             id[p] = id[q];
 
             rd[q] += rd[p];
@@ -109,8 +111,9 @@ namespace Quick_Union_Improvements_2_4
         /// <returns></returns>
         public int FindRootDepth(int item)
         {
-            Console.WriteLine("Root Depth {0}", rd[item]);
-            return rd[item];
+            int root = FindRoot(item);
+            Console.WriteLine("Root Depth {0}", rd[root]);
+            return rd[root];
         }
     }
 }

@@ -11,11 +11,11 @@ namespace Quick_FindUF_2_2
             // Connecting
             while (true)
             {
-                string readLine = Console.ReadLine();
-                int p = int.Parse(readLine);
+                string leftItem = Console.ReadLine();
+                int p = int.Parse(leftItem);
 
-                string readLine1 = Console.ReadLine();
-                int q = int.Parse(readLine1);
+                string rightItem = Console.ReadLine();
+                int q = int.Parse(rightItem);
 
                 //ExitPoint
                 if(p == -1)
@@ -26,11 +26,11 @@ namespace Quick_FindUF_2_2
             }
 
             // Check if points are connected.
-            string readLine2 = Console.ReadLine();
-            int p1 = int.Parse(readLine2);
+            string leftItem1 = Console.ReadLine();
+            int p1 = int.Parse(leftItem1);
 
-            string readLine3 = Console.ReadLine();
-            int q1 = int.Parse(readLine3);
+            string rightItem1 = Console.ReadLine();
+            int q1 = int.Parse(rightItem1);
 
             if (quickFind.IsConnected(p1, q1))
             {
@@ -52,7 +52,7 @@ namespace Quick_FindUF_2_2
             }
         }
 
-        public bool IsConnected(int p, int q)
+        public bool IsConnected(int p, int q) 
         {
             return id[p] == id[q];
         }
