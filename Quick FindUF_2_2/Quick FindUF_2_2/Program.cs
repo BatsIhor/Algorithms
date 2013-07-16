@@ -14,15 +14,15 @@ namespace Quick_FindUF_2_2
                 string leftItem = Console.ReadLine();
                 int p = int.Parse(leftItem);
 
+                //ExitPoint
+                if (p == -1)
+                    break;
+
                 string rightItem = Console.ReadLine();
                 int q = int.Parse(rightItem);
 
-                //ExitPoint
-                if(p == -1)
-                    break;
-                
                 quickFind.Union(p, q);
-            
+
             }
 
             // Check if points are connected.
@@ -52,12 +52,12 @@ namespace Quick_FindUF_2_2
             }
         }
 
-        public bool IsConnected(int p, int q) 
+        public bool IsConnected(int p, int q)
         {
             return id[p] == id[q];
         }
 
-        public void Union(int p, int q) 
+        public void Union(int p, int q)
         {
             int pid = id[p];
             int qid = id[q];
