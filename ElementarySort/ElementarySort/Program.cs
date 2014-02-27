@@ -6,7 +6,8 @@ namespace ElementarySort
 {
     public class Example
     {
-        private static IComparable[] aux;
+        static int count = 0;
+        //private static IComparable[] aux;
 
         public static void insertionSort(IComparable[] a)
         {
@@ -69,7 +70,8 @@ namespace ElementarySort
 
         public static void sort(IComparable[] a)
         {
-            aux = new IComparable[a.Length];
+            IComparable[] aux = new IComparable[a.Length];
+
             sort(a, aux, 0, a.Length - 1);
 
             //int N = a.Length;
@@ -85,46 +87,63 @@ namespace ElementarySort
         public static void sort(IComparable[] a, IComparable[] aux, int lo, int hi)
         {
             if (hi <= lo) return;
-            int mid = lo + (hi - lo)/2;
+            int mid = lo + (hi - lo) / 2;
+
             sort(a, aux, lo, mid);
+
             sort(a, aux, mid + 1, hi);
+
+
             merge(a, aux, lo, mid, hi);
+
         }
 
+        /// <summary>
+        /// Works ! )
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="aux"></param>
+        /// <param name="lo"></param>
+        /// <param name="mid"></param>
+        /// <param name="hi"></param>
         private static void merge(IComparable[] a, IComparable[] aux, int lo, int mid, int hi)
         {
-            for (int k = 0; k < hi; k++)
+            count++;
+            for (int k = lo; k <= hi; k++)
             {
                 aux[k] = a[k];
             }
 
             int i = lo;
             int j = mid + 1;
+
             for (int k = lo; k <= hi; k++)
             {
-                if (i >= mid)
-                {
+                if (i > mid)
+
                     a[k] = aux[j++];
-                }
-                else if (j >= hi)
-                {
+                else if (j > hi)
                     a[k] = aux[i++];
-                }
                 else if (less(aux[j], aux[i]))
-                {
                     a[k] = aux[j++];
-                }
                 else
-                {
                     a[k] = aux[i++];
-                }
-                show(a);
-                show(aux);
             }
+            show(a);
+
+            //if (count == 7)
+            //{
+            //    Console.ReadLine();
+            //}
         }
 
+        //public static void BUMergeSort(IComparable[] a, int lo, int hi)
+        //{
+        //    int N = a.Length;
+        //}
+
         #endregion
-        
+
         private static bool less(IComparable v, IComparable w)
         {
             return v.CompareTo(w) < 0;
@@ -152,11 +171,18 @@ namespace ElementarySort
         }
 
         public static void Main(String[] args)
-        { // Read strings from standard input, sort them, and print.
+        {
+            // Read strings from standard input, sort them, and print.
 
-            IComparable[] a = new IComparable[] { 22, 79, 67, 55, 99, 23, 41, 21, 71, 82, 87, 25 };
+            //IComparable[] a = new IComparable[] { 22, 79, 67, 55, 99, 23, 41, 21, 71, 82, 87, 25 };
+            IComparable[] a = new IComparable[] { "TUFF", "DIDO", "ENYA", "NENA", "DOOM", "DEVO", "TACO", "KORN", "BLUR", "VAIN", "MIMS", "KISS"};
+            //IComparable[] a = new IComparable[] { "m", "e", "r", "g", "e", "s", "o", "r", "t", "e", "x", "a", "m", "p", "l", "e" };
+
+
+            //merge(a, aux, 0, a.Length / 2, a.Length);
 
             mergeSort(a);
+
             //String[] a = new[]
             //{
             //    "NENA", "MIMS", "CARS", "JAYZ", "WEEN", "DOOM", "STYX", "SEAL", "BUSH", "CHER", "RUSH", "FUEL", "AQUA",
@@ -184,6 +210,7 @@ namespace ElementarySort
             //selectSort(a);
 
             show(a);
+            //show(aux);
             Console.ReadLine();
 
         }
